@@ -221,6 +221,17 @@ Pair * firstTreeMap(TreeMap * tree)
     return min->pair;
 }
 
-Pair * nextTreeMap(TreeMap * tree) {
-    return NULL;
+Pair * nextTreeMap(TreeMap * tree)
+{
+    if(tree->current == NULL) return NULL;
+    TreeNode *sucesor = tree->current->right;
+    while(sucesor != NULL && sucesor->left != NULL)
+    {
+        sucesor = sucesor->left;
+    }
+
+    if(sucesor == NULL) return NULL;
+
+    tree->current = sucesor;
+    return sucesor->pair;
 }
